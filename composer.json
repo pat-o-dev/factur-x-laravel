@@ -1,0 +1,57 @@
+{
+    "name": "pat-o-dev/factur-x-laravel",
+    "description": "Laravel bridge for pat-o-dev/factur-x: ServiceProvider, Facade and Artisan command to generate Factur-X invoices.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "factur-x",
+        "e-invoicing",
+        "facture-electronique",
+        "en16931"
+    ],
+    "authors": [
+        {
+            "name": "Pat-O-Dev"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^11.0|^12.0",
+        "pat-o-dev/factur-x": "^0.1 || @dev"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PatODev\\FacturX\\Laravel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PatODev\\FacturX\\Laravel\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "PatODev\\FacturX\\Laravel\\FacturXServiceProvider"
+            ],
+            "aliases": {
+                "FacturX": "PatODev\\FacturX\\Laravel\\Facades\\FacturX"
+            }
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../factur-x",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "minimum-stability": "stable"
+}
