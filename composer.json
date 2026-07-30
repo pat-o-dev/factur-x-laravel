@@ -44,14 +44,5 @@
             }
         }
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../factur-x",
-            "options": {
-                "symlink": true
-            }
-        }
-    ],
     "minimum-stability": "stable"
 }
