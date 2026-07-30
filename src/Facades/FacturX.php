@@ -12,6 +12,10 @@ use PatODev\FacturX\FacturXGenerator;
  * @method static string generateHybridPdf(\PatODev\FacturX\Model\Invoice $invoice, string $basePdf, float $prepaidAmount = 0.0, float $roundingAmount = 0.0)
  *
  * @see FacturXGenerator
+ * @see \PatODev\FacturX\Laravel\FacturXInvoiceGenerator for the full
+ *      Invoice -> rendered template -> hybrid PDF pipeline (bind
+ *      \PatODev\FacturX\Laravel\FacturXInvoiceGenerator instead of this facade
+ *      to use it, since it isn't a drop-in replacement for FacturXGenerator).
  */
 class FacturX extends Facade
 {

@@ -18,6 +18,8 @@
     "require": {
         "php": "^8.2",
         "illuminate/support": "^11.0|^12.0",
+        "illuminate/view": "^11.0|^12.0",
+        "mpdf/mpdf": "^8.2",
         "pat-o-dev/factur-x": "^0.1"
     },
     "require-dev": {
