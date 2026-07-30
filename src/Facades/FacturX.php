@@ -11,6 +11,9 @@ use PatODev\FacturX\FacturXGenerator;
 use PatODev\FacturX\Laravel\FacturXInvoiceGenerator;
 use PatODev\FacturX\Model\Invoice;
 use PatODev\FacturX\Model\Party;
+use PatODev\FacturX\Pdf\EmbeddedXmlExtractor;
+use PatODev\FacturX\Validation\InvoiceValidator;
+use PatODev\FacturX\Validation\ValidationReport;
 
 /**
  * @method static string generateXml(Invoice $invoice, float $prepaidAmount = 0.0, float $roundingAmount = 0.0)
@@ -39,6 +42,18 @@ class FacturX extends Facade
     public static function render(Invoice $invoice, float $prepaidAmount = 0.0, float $roundingAmount = 0.0): string
     {
         return static::$app->make(FacturXInvoiceGenerator::class)->generate($invoice, $prepaidAmount, $roundingAmount);
+    }
+
+    /** Extracts the embedded Factur-X XML from a hybrid PDF — shortcut for EmbeddedXmlExtractor::extract(). */
+    public static function extractXml(string $pdfBytes): string
+    {
+        return (new EmbeddedXmlExtractor())->extract($pdfBytes);
+    }
+
+    /** Runs the curated business-rule checks against Factur-X XML — shortcut for InvoiceValidator::validate(). */
+    public static function validateInvoice(string $xmlContent): ValidationReport
+    {
+        return (new InvoiceValidator())->validate($xmlContent);
     }
 
     protected static function getFacadeAccessor(): string
