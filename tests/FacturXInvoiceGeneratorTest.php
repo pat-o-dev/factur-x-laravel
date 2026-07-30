@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PatODev\FacturX\Laravel\Tests;
 
 use DateTimeImmutable;
+use PatODev\FacturX\Enum\UnitOfMeasureCode;
 use PatODev\FacturX\Laravel\Facades\FacturX;
 use PatODev\FacturX\Laravel\FacturXInvoiceGenerator;
 use PatODev\FacturX\Model\Invoice;
@@ -47,7 +48,7 @@ final class FacturXInvoiceGeneratorTest extends TestCase
             ->seller($seller)
             ->buyer($buyer)
             ->dueInDays(30)
-            ->line(itemName: 'Prestation de transport', quantity: 2.0, unitCode: 'C62', netUnitPrice: 100.0, vatRate: 20.0)
+            ->line(itemName: 'Prestation de transport', quantity: 2.0, unitCode: UnitOfMeasureCode::Piece, netUnitPrice: 100.0, vatRate: 20.0)
             ->build();
     }
 }

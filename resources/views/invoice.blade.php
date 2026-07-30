@@ -4,7 +4,7 @@
     $totals = $calculator->totals($invoice);
     $vatBreakdown = $calculator->vatBreakdown($invoice);
 
-    $money = static fn (float $amount): string => number_format($amount, 2, ',', ' ').' '.$invoice->currencyCode;
+    $money = static fn (float $amount): string => number_format($amount, 2, ',', ' ').' '.$invoice->currencyCode->value;
 @endphp
 <!DOCTYPE html>
 <html lang="fr">
@@ -84,7 +84,7 @@
             @foreach ($invoice->lines() as $line)
                 <tr>
                     <td>{{ $line->itemName }}</td>
-                    <td class="num">{{ rtrim(rtrim(number_format($line->quantity, 2, ',', ' '), '0'), ',') }} {{ $line->unitCode }}</td>
+                    <td class="num">{{ rtrim(rtrim(number_format($line->quantity, 2, ',', ' '), '0'), ',') }} {{ $line->unitCode->value }}</td>
                     <td class="num">{{ $money($line->netUnitPrice) }}</td>
                     <td class="num">{{ $line->vatRate !== null ? number_format($line->vatRate, 2, ',', ' ').' %' : $line->vatCategory->value }}</td>
                     <td class="num">{{ $money($line->netAmount()) }}</td>
