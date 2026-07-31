@@ -40,6 +40,22 @@ return response($hybridPdf, 200, [
 ]);
 ```
 
+### Picking a view per invoice (e.g. letting users choose a template)
+
+`render()`/`generate()` accept an optional `$view` to use a different Blade
+view than `config('factur-x.view')` for a single invoice — handy if your
+app defines several templates and lets the user pick one:
+
+```php
+use PatODev\FacturX\Laravel\Facades\FacturX;
+
+$hybridPdf = FacturX::render($invoice, view: 'invoices.pdf.modern');
+```
+
+The package itself only ships one template; any others (e.g. "Modern",
+"Compact") are plain Blade views you own in your app — this parameter just
+lets you pick one at render time instead of only via config.
+
 ### Customizing the invoice template
 
 Publish the default Blade view and edit it directly:
@@ -55,8 +71,9 @@ Or point `config('factur-x.view')` at your own view name entirely.
 
 `FacturXInvoiceGenerator` depends on the
 `PatODev\FacturX\Laravel\Rendering\InvoiceHtmlRenderer` interface
-(`render(Invoice $invoice): string`, returning HTML), bound by default to
-`BladeInvoiceRenderer`. Rebind it in a service provider to swap engines:
+(`render(Invoice $invoice, ?string $view = null): string`, returning HTML),
+bound by default to `BladeInvoiceRenderer`. Rebind it in a service provider
+to swap engines:
 
 ```php
 $this->app->bind(InvoiceHtmlRenderer::class, MyCustomRenderer::class);

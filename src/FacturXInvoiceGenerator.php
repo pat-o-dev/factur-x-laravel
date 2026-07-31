@@ -27,8 +27,9 @@ final class FacturXInvoiceGenerator
         Invoice $invoice,
         float $prepaidAmount = 0.0,
         float $roundingAmount = 0.0,
+        ?string $view = null,
     ): string {
-        $html = $this->htmlRenderer->render($invoice);
+        $html = $this->htmlRenderer->render($invoice, $view);
         $basePdf = $this->pdfRenderer->render($html);
 
         return $this->core->generateHybridPdf($invoice, $basePdf, $prepaidAmount, $roundingAmount);

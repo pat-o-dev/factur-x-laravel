@@ -21,9 +21,10 @@ return [
     |--------------------------------------------------------------------------
     |
     | The Blade view used by the default InvoiceHtmlRenderer to produce the
-    | visual invoice. Publish it with `--tag=factur-x-views` to customize it,
-    | or rebind PatODev\FacturX\Laravel\Rendering\InvoiceHtmlRenderer in the
-    | container to use a different templating engine entirely.
+    | visual invoice, unless a $view is passed to FacturX::render()/generate()
+    | for a specific invoice. Publish it with `--tag=factur-x-views` to
+    | customize it, or rebind PatODev\FacturX\Laravel\Rendering\InvoiceHtmlRenderer
+    | in the container to use a different templating engine entirely.
     |
     */
 

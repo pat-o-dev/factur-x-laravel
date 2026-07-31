@@ -38,10 +38,12 @@ class FacturX extends Facade
     /**
      * Full pipeline: renders the invoice template, converts it to PDF/A, and
      * hybridizes it — shortcut for app(FacturXInvoiceGenerator::class)->generate().
+     * Pass $view to render a different Blade view than config('factur-x.view')
+     * for this invoice only (e.g. a template picked by the end user).
      */
-    public static function render(Invoice $invoice, float $prepaidAmount = 0.0, float $roundingAmount = 0.0): string
+    public static function render(Invoice $invoice, float $prepaidAmount = 0.0, float $roundingAmount = 0.0, ?string $view = null): string
     {
-        return static::$app->make(FacturXInvoiceGenerator::class)->generate($invoice, $prepaidAmount, $roundingAmount);
+        return static::$app->make(FacturXInvoiceGenerator::class)->generate($invoice, $prepaidAmount, $roundingAmount, $view);
     }
 
     /** Extracts the embedded Factur-X XML from a hybrid PDF — shortcut for EmbeddedXmlExtractor::extract(). */

@@ -19,8 +19,8 @@ final class BladeInvoiceRenderer implements InvoiceHtmlRenderer
     ) {
     }
 
-    public function render(Invoice $invoice): string
+    public function render(Invoice $invoice, ?string $view = null): string
     {
-        return $this->viewFactory->make($this->view, ['invoice' => $invoice])->render();
+        return $this->viewFactory->make($view ?? $this->view, ['invoice' => $invoice])->render();
     }
 }

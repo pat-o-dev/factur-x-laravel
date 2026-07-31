@@ -13,5 +13,6 @@ use PatODev\FacturX\Model\Invoice;
  */
 interface InvoiceHtmlRenderer
 {
-    public function render(Invoice $invoice): string;
+    /** @param  string|null  $view  Overrides config('factur-x.view') for this render (e.g. a template picked by the end user). */
+    public function render(Invoice $invoice, ?string $view = null): string;
 }

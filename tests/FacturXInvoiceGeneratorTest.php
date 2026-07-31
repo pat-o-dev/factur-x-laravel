@@ -30,6 +30,14 @@ final class FacturXInvoiceGeneratorTest extends TestCase
         self::assertStringContainsString('factur-x.xml', $pdf);
     }
 
+    public function test_a_view_override_is_used_instead_of_the_configured_default(): void
+    {
+        $pdf = FacturX::render($this->sampleInvoice(), view: 'factur-x::invoice');
+
+        self::assertStringStartsWith('%PDF-', $pdf);
+        self::assertStringContainsString('factur-x.xml', $pdf);
+    }
+
     private function sampleInvoice(): Invoice
     {
         $seller = FacturX::party('ACME Transport SARL')
